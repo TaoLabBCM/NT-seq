@@ -11,8 +11,11 @@ Igvtools \
 Biopython
 
 ## Usage: 
+Create conda environment:\
 `conda create -f NT-seq.yml`\
+Activate conda environment:\
 `conda activate NT-seq`\
+Run workflow with snakemake:\
 `snakemake -s NT-seq-workflow_PE.py -j 10`
 
 ## Expected output: 
