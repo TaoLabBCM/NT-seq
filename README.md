@@ -8,7 +8,7 @@ Cutadapt \
 Snakemake \
 Samtools \
 Igvtools \
-Biopython\
+Biopython
 
 ## Usage: 
 `conda create -f NT-seq.yml`\
