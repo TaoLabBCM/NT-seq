@@ -16,7 +16,7 @@ Create conda environment:\
 Activate conda environment:\
 `conda activate NT-seq`\
 Run workflow with snakemake for single-end data:\
-`snakemake -s NT-seq-workflow_SE.py -j 10`
+`snakemake -s NT-seq-workflow_SE.py -j 10`\
 Run workflow with snakemake for paired-end data:\
 `snakemake -s NT-seq-workflow_PE.py -j 10`
 
