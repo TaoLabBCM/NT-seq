@@ -6,7 +6,7 @@ ruleorder: fasta_AT_convert>trimming>dedupe>fastq_AT_convert>bowtie2_build>bowti
 rule all:
     input:
         expand("results/AT_only_fasta/AT_only.fasta"),
-        # expand("bowtie2_index/index"),
+        expand("bowtie2_index/index{ext}", ext=[".1.bt2", ".2.bt2", ".3.bt2",".4.bt2", ".rev.1.bt2", ".rev.2.bt2"]),
         expand("results/trimmed_fastq/{sample}_{read}_trimmed.fastq.gz", sample=SAMPLES, read=Read),
         expand("results/deduped_fastq/{sample}_{read}_dedupe.fastq", sample=SAMPLES, read=Read),
         expand("results/converted_fastq/{sample}_{read}_AT_only.fastq", sample=SAMPLES, read=Read),
@@ -74,16 +74,21 @@ rule fastq_AT_convert:
 rule bowtie2_build:
     input:
         "results/AT_only_fasta/AT_only.fasta"
+    output:
+        multiext(
+            "bowtie2_index/index",
+            ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2",
+        ),
+    log: "logs/bowtie2/index.log"
     shell:
         """
-        bowtie2-build {input} bowtie2_index/index
+        bowtie2-build {input} bowtie2_index/index > {log} 2>&1
         """
 
 rule bowtie2_align:
     input:
         r1 = "results/converted_fastq/{sample}_R1_AT_only.fastq",
         r2 = "results/converted_fastq/{sample}_R2_AT_only.fastq",
-        
     output:
         "results/converted_sam/{sample}_AT_only.sam"
     log:
