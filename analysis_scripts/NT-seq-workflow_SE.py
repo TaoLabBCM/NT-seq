@@ -4,6 +4,8 @@ ref_genome = "../reference_genome/ecoli_mg1655.fasta"
 ruleorder: fasta_AT_convert > bowtie2_build > dedupe>trimming>fastq_AT_convert>bowtie2_align > sam_to_original_se > samtools_calmd > sam_tag_filtering > samtools_sort_index > igvtools
 rule all:
     input:
+        expand("results/AT_only_fasta/AT_only.fasta"),
+        expand("bowtie2_index/index{ext}", ext=[".1.bt2", ".2.bt2", ".3.bt2",".4.bt2", ".rev.1.bt2", ".rev.2.bt2"]),
         expand("results/trimmed_fastq/{sample}_trimmed.fastq", sample=SAMPLES),
         expand("results/deduped_fastq/{sample}_dedupe.fastq.gz", sample=SAMPLES),
         expand("results/converted_fastq/{sample}_AT_only.fastq", sample=SAMPLES),
@@ -22,14 +24,6 @@ rule fasta_AT_convert:
         "results/AT_only_fasta/AT_only.fasta"
     shell:
         "python3 fasta_to_AT_only.py {input.fasta} {output[0]}"
-
-rule bowtie2_build:
-    input:
-        "results/AT_only_fasta/AT_only.fasta"
-    output:
-        "results/bowtie2_index/index"
-    shell:
-        "bowtie2-build {input} {output}"
 
 rule dedupe:
     input:
@@ -68,8 +62,21 @@ rule fastq_AT_convert:
         """
         python3 fastq_to_AT_only.py {input} {output}
         """
-
-rule bowtie2:
+rule bowtie2_build:
+    input:
+        "results/AT_only_fasta/AT_only.fasta"
+    output:
+        multiext(
+            "bowtie2_index/index",
+            ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2",
+        ),
+    log: "logs/bowtie2/index.log"
+    shell:
+        """
+        bowtie2-build {input} bowtie2_index/index > {log} 2>&1
+        """
+        
+rule bowtie2_align:
     input:
         r1 = "results/converted_fastq/{sample}_AT_only.fastq"
     params:
