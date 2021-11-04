@@ -21,5 +21,8 @@ CSV files containing base count at each position of reference genome for each sa
 ## Test data: 
 random sampled H. pylori NT-seq data.
 
+## Expected run time for demo
+About ten minutes using ten threads of Intel(R) Xeon(R) Gold 5120 CPU @ 2.20GHz
+
 ## Notes: 
 To apply the script to other data, please modify the ref_genome and sample name in snakemake scripts.
