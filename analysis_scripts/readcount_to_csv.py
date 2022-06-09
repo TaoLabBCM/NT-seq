@@ -6,6 +6,7 @@ from Bio.Seq import Seq
 from Bio import SeqIO
 import pandas as pd
 
+# get igvtools readcount output, reference genome, and csv output file
 readcount_fwd = sys.argv[1]
 readcount_rev = sys.argv[2]
 ref_genome = sys.argv[3]
@@ -38,11 +39,15 @@ def wig_to_datafram(wig_file):
             wig_dict['G'].append(line.split('\t')[3])
             wig_dict['T'].append(line.split('\t')[4])
     return(pd.DataFrame(data=wig_dict))
+
+# load reference genome
 ref_fasta_dict = {rec.id : rec.seq for rec in SeqIO.parse(ref_genome, "fasta")}
+# convert readcount wig file to dataframe
 readcount_fwd_data = wig_to_datafram(readcount_fwd)
 readcount_fwd_data['strand'] = '+'
 readcount_rev_data = wig_to_datafram(readcount_rev)
 readcount_rev_data['strand'] = '-'
+# combine fwd and rev data, and add column names and reference
 csv_data = pd.concat([readcount_fwd_data,readcount_rev_data])
 col_list=['A','C','G','T']
 csv_data[col_list] = csv_data[col_list].astype(float)
@@ -53,4 +58,5 @@ for i in range(len(csv_data)):
     base_index = int(csv_data.iloc[i,1])-1
     ref_base.append(str(ref_fasta_dict[chrom_name])[base_index])
 csv_data['ref'] = ref_base
+# save data frame to csv file
 csv_data[['chrom','pos','ref','strand','A','C','G','T','cor']].to_csv(csv_data_output,index=False)
