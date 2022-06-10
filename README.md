@@ -18,7 +18,7 @@ Add PATH of SalmonTE to your .bashrc file: \
 Re log-in to terminal or use source command: \
 `source ~/.bashrc`\
 Create conda environment: \
-`conda env create -f NT-seq.yml` \
+`conda env create -f NT-seq.yml`
 
 ## How to use it?
 ```
