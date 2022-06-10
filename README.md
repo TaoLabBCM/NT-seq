@@ -9,7 +9,7 @@ Snakemake \
 Samtools \
 Igvtools \
 Biopython \
-docopt
+Docopt
 
 Clone the repository: \
 `git clone https://github.com/TaoLabBCM/NT-seq`\
