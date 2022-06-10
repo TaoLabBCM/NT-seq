@@ -51,4 +51,4 @@ random sampled H. pylori JP26 NT-seq data.
 A few minutes using ten threads of Intel(R) Xeon(R) Gold 5120 CPU @ 2.20GHz
 
 ## Notes: 
-To apply the script to other species, please build bowtie index with `NT-seq.py index` command or cp existing bowtie index to index/ folder.
+To apply the script to other species, please build bowtie index with `NT-seq.py index` command or copy existing bowtie index to index/ folder.
