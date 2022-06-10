@@ -21,13 +21,13 @@ Create conda environment: \
 `conda env create -f NT-seq.yml`\
 
 ## How to use it?
-`Usage:
+```Usage:
     NTseq.py index [--index_name=index_name] [--num_threads=numthreads] (--input_fasta=fa_file)
     NTseq.py quant (--index=genome) (--input_fasta=fa_file) [--outpath=outpath] [--num_threads=numthreads] FILE...
 
 Options:
     -h --help     Show this screen.
-    --version     Show version.`
+    --version     Show version.```
 
 ## An example with demo data: 
 Activate conda environment: \
