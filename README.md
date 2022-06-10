@@ -27,7 +27,8 @@ Create conda environment: \
 
 Options:
     -h --help     Show this screen.
-    --version     Show version.```
+    --version     Show version.
+```
 
 ## An example with demo data: 
 Activate conda environment: \
