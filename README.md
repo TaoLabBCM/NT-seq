@@ -11,17 +11,17 @@ Igvtools \
 Biopython \
 docopt
 
-Clone the repository: 
+Clone the repository: \
 `git clone https://github.com/TaoLabBCM/NT-seq`\
-Add PATH of SalmonTE to your .bashrc file: 
+Add PATH of SalmonTE to your .bashrc file: \
 `export PATH=$PATH:/NT-seq`\
-Re log-in to terminal or use source command: 
+Re log-in to terminal or use source command: \
 `source ~/.bashrc`\
-Create conda environment: 
+Create conda environment: \
 `conda env create -f NT-seq.yml`\
 
 ## Usage example: 
-Activate conda environment: 
+Activate conda environment: \
 `conda activate NT-seq`\
 Build AT only bowtie index:\
 `NT-seq.py index --index_name=HPJP26_AT_only --input_fasta=reference_genome/HPJP26.fasta`\
