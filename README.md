@@ -14,7 +14,7 @@ docopt
 Clone the repository: \
 `git clone https://github.com/TaoLabBCM/NT-seq`\
 Add PATH of SalmonTE to your .bashrc file: \
-`export PATH=$PATH:/NT-seq`\
+`export PATH=$PATH:/PATH_OF_NT-seq`\
 Re log-in to terminal or use source command: \
 `source ~/.bashrc`\
 Create conda environment: \
