@@ -1,5 +1,5 @@
 # NT-seq
-This pipeline is designed for data analysis of NT-seq.
+This pipeline is designed for data analysis of NT-seq (Li, X., Guo, S., Cui, Y. et al. NT-seq: a chemical-based sequencing method for genomic methylome profiling. Genome Biol 23, 122 (2022). https://doi.org/10.1186/s13059-022-02689-9).
 
 ## Requirements & Installation: 
 Python3 \
